@@ -1,2 +1,6 @@
 # GROW
-GraphQL + React on WordPress
+
+**G**raphQL\
+**R**eactJs\
+**O**n\
+**W**ordpress
