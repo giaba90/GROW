@@ -1,9 +1,6 @@
 # GROW
 
-*G*raphQL
-
-*R*eactJs
-
-*O*n
-
-*W*ordpress
+**G**raphQL
+**R**eactJs
+**O**n
+**W**ordpress
