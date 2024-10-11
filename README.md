@@ -1,2 +1,6 @@
 # GROW
-GraphQL + React on WordPress
+
+GraphQL
+ReactJs
+On
+Wordpress
