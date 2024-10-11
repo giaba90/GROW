@@ -1,9 +1,9 @@
 # GROW
 
-GraphQL
+*G*raphQL
 
-ReactJs
+*R*eactJs
 
-On
+*O*n
 
-Wordpress
+*W*ordpress
