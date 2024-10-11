@@ -1,0 +1,21 @@
+version: "3.9"
+services:
+  wordpress:
+    container_name: wordpress
+    build: .
+    ports:
+      - "8000:80"
+    volumes:
+      - ./site:/var/www/html
+  db:
+    image: mysql
+    container_name: db
+    ports:
+      - "3307:3306"
+    command: --default-authentication-plugin=mysql_native_password
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: password
+      MYSQL_DATABASE: wordpress
+      MYSQL_USER: wordpress
+      MYSQL_PASSWORD: wpassword
