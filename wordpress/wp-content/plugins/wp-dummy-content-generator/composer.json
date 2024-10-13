@@ -1,0 +1,8 @@
+{
+    "require": {
+        "fakerphp/faker": "^1.23"
+    },
+    "config": {
+        "platform-check": false
+    }
+}
