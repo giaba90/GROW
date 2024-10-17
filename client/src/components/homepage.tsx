@@ -6,7 +6,7 @@ import { Card, CardContent, CardFooter, CardHeader, CardTitle } from "@/componen
 
 const GET_POSTS = gql`
   query GetPosts {
-    posts(first: 3) {
+    posts {
       nodes {
         postId
         title
