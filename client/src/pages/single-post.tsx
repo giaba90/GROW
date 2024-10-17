@@ -1,10 +1,11 @@
-import { useParams, Link } from 'react-router-dom'
+import { useParams } from 'react-router-dom'
 import { useQuery, gql } from '@apollo/client'
-import { Menu, Heart, Bookmark, Share2, ThumbsUp } from 'lucide-react'
+import { Bookmark, Share2, ThumbsUp } from 'lucide-react'
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
-import { Input } from "@/components/ui/input"
 import { Badge } from "@/components/ui/badge"
+import Footer from '@/components/layout/Footer'
+import Header from '@/components/layout/Header'
 
 const GET_POST = gql`
   query GetPost($id: ID!) {
@@ -53,30 +54,7 @@ export default function SinglePost() {
 
   return (
     <div className="min-h-screen bg-background">
-      <header className="bg-primary text-primary-foreground p-4">
-        <div className="container mx-auto flex justify-between items-center">
-          <h1 className="text-2xl font-bold">Grow</h1>
-          <div className="flex items-center space-x-4">
-            <Input type="search" placeholder="Cerca..." className="w-32 md:w-auto" />
-            <Button variant="ghost" size="icon">
-              <Menu className="h-6 w-6" />
-            </Button>
-          </div>
-        </div>
-        <nav className="hidden md:block mt-4">
-          <ul className="flex space-x-4">
-            {categories.map((category) => (
-              <li key={category.termTaxonomyId}>
-                <Button variant="link" asChild>
-                  <Link to={`/category/${category.slug}`}>
-                    {category.name}
-                  </Link>
-                </Button>
-              </li>
-            ))}
-          </ul>
-        </nav>
-      </header>
+      <Header categories={categories} />
 
       <main className="container mx-auto p-4">
         <Card>
@@ -115,16 +93,7 @@ export default function SinglePost() {
         </Card>
       </main>
 
-      <footer className="bg-secondary text-secondary-foreground p-4 mt-8">
-        <div className="container mx-auto text-center">
-          <p>&copy; 2023 Grow. Tutti i diritti riservati.</p>
-          <Button variant="link" asChild>
-            <Link to="/privacy-policy">
-              Privacy Policy
-            </Link>
-          </Button>
-        </div>
-      </footer>
+      <Footer></Footer>
     </div>
   )
 }
