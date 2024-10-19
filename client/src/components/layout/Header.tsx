@@ -1,19 +1,37 @@
 import { Link } from 'react-router-dom'
-import { Menu } from 'lucide-react'
-import { Button } from "@/components/ui/button"
 import { Menubar, MenubarMenu, MenubarContent, MenubarItem, MenubarTrigger } from "@/components/ui/menubar"
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
+import { useQuery, gql } from '@apollo/client'
 
-type HeaderProps = {
-    categories: {
-        termTaxonomyId: string;
-        name: string;
-        slug: string;
-    }[];
+const GET_CATEGORIES = gql`
+  query GetCategories {
+    categories {
+      nodes {
+        id
+        name
+        slug
+      }
+    }
+  }
+`;
+
+interface Category {
+    id: string;
+    name: string;
+    slug: string;
 }
 
-export default function Header({ categories }: HeaderProps) {
+export default function Header() {
     const [isMenuOpen, setIsMenuOpen] = useState(false);
+    const [categories, setCategories] = useState<Category[]>([]);
+
+    const { loading, error, data } = useQuery(GET_CATEGORIES);
+
+    useEffect(() => {
+        if (data) {
+            setCategories(data.categories.nodes);
+        }
+    }, [data]);
 
     const toggleMenu = () => {
         setIsMenuOpen(!isMenuOpen);
@@ -33,7 +51,7 @@ export default function Header({ categories }: HeaderProps) {
                                 </MenubarTrigger>
                                 <MenubarContent>
                                     {categories.map((category) => (
-                                        <MenubarItem key={category.termTaxonomyId} asChild>
+                                        <MenubarItem key={category.id} asChild>
                                             <Link to={`/category/${category.slug}`}>
                                                 {category.name}
                                             </Link>
@@ -45,7 +63,6 @@ export default function Header({ categories }: HeaderProps) {
                     </nav>
                 </div>
             </div>
-
         </header>
     )
 }
