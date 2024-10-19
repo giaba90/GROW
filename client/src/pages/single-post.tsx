@@ -56,7 +56,7 @@ export default function SinglePost() {
     <div className="min-h-screen bg-background">
       <Header categories={categories} />
 
-      <main className="container mx-auto p-4">
+      <main className="container mx-auto md:p-4">
         <Card>
           <CardHeader className="p-0">
             <img src={post.featuredImage?.node.sourceUrl || "/placeholder.svg?height=400&width=800"} alt={post.title} className="w-full h-64 object-cover rounded-t-lg" />
@@ -65,12 +65,12 @@ export default function SinglePost() {
             <CardTitle className="text-3xl mb-4">{post.title}</CardTitle>
             <div className="flex items-center space-x-4 text-muted-foreground mb-4">
               <span>{new Date(post.date).toLocaleDateString()}</span>
-              {post.categories.nodes.map(category => (
+              {post.categories.nodes.map((category: { name: string }) => (
                 <Badge key={category.name} variant="secondary">{category.name}</Badge>
               ))}
             </div>
             <div className="flex flex-wrap gap-2 mb-4">
-              {post.tags.nodes.map(tag => (
+              {post.tags.nodes.map((tag: { name: string }) => (
                 <Badge key={tag.name} variant="outline">{tag.name}</Badge>
               ))}
             </div>
