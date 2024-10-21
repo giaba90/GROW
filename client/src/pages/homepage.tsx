@@ -35,11 +35,10 @@ export default function Homepage() {
   if (error) return <p>Error: {error.message}</p>;
 
   const blogPosts = data.posts.nodes;
-  const categories = data.categories.nodes;
 
   return (
     <div className="min-h-screen bg-background">
-      <Header categories={categories} />
+      <Header />
       <main className="container mx-auto p-4">
         <BlogPostList posts={blogPosts} />
       </main>
