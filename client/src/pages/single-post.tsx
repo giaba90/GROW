@@ -6,6 +6,7 @@ import { Badge } from "@/components/ui/badge"
 import Footer from '@/components/layout/Footer'
 import Header from '@/components/layout/Header'
 import { BreadcrumbList, BreadcrumbItem, BreadcrumbLink, BreadcrumbSeparator } from "@/components/ui/breadcrumb"; // Import BreadcrumbSeparator
+import PostBreadcrumb from '@/components/blog/PostBreadcrumb'; // Import the new component
 
 const GET_POST = gql`
   query GetPost($id: ID!) {
@@ -54,15 +55,9 @@ export default function SinglePost() {
     <div className="min-h-screen bg-background">
       <Header />
       <main className="container mx-auto md:p-4">
-        <Badge variant='secondary' className='ml-2 mt-2 mb-2 w-fit'> <BreadcrumbList>
-          <BreadcrumbItem>
-            <BreadcrumbLink asChild>
-              <Link to="/">Home</Link>
-            </BreadcrumbLink>
-          </BreadcrumbItem>
-          <BreadcrumbSeparator />
-          <BreadcrumbItem>{post.title}</BreadcrumbItem>
-        </BreadcrumbList></Badge>
+        { /* 
+        <PostBreadcrumb title={post.title} /> 
+    Use the new component later*/}
         <Card>
           <CardHeader className="p-0">
             <img src={post.featuredImage?.node.sourceUrl || "/placeholder.svg?height=400&width=800"} alt={post.title} className="w-full h-64 object-cover md:rounded-t-lg" />
