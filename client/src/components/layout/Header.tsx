@@ -3,33 +3,37 @@ import { Menubar, MenubarMenu, MenubarContent, MenubarItem, MenubarTrigger } fro
 import { useState, useEffect } from 'react'
 import { useQuery, gql } from '@apollo/client'
 
-const GET_CATEGORIES = gql`
-  query GetCategories {
-    categories {
-      nodes {
-        id
-        name
-        slug
+const GET_MENU = gql`
+query GetMenu {
+  menu(id: "menu-principale", idType: SLUG) {
+    menuItems {
+      edges {
+        node {
+            id
+            label
+            url
+        }
       }
     }
   }
+}
 `;
 
-interface Category {
+interface MenuItems {
     id: string;
-    name: string;
-    slug: string;
+    label: string;
+    url: string;
 }
 
 export default function Header() {
     const [isMenuOpen, setIsMenuOpen] = useState(false);
-    const [categories, setCategories] = useState<Category[]>([]);
+    const [MenuItems, setMenuItems] = useState<MenuItems[]>([]);
 
-    const { loading, error, data } = useQuery(GET_CATEGORIES);
+    const { loading, error, data } = useQuery(GET_MENU);
 
     useEffect(() => {
         if (data) {
-            setCategories(data.categories.nodes);
+            setMenuItems(data.menu.menuItems.edges.map((edge: { node: MenuItems }) => edge.node));
         }
     }, [data]);
 
@@ -50,10 +54,10 @@ export default function Header() {
                                     {isMenuOpen ? 'Close' : 'Menu'}
                                 </MenubarTrigger>
                                 <MenubarContent>
-                                    {categories.map((category) => (
-                                        <MenubarItem key={category.id} asChild>
-                                            <Link to={`/category/${category.slug}`}>
-                                                {category.name}
+                                    {MenuItems.map((item) => (
+                                        <MenubarItem key={item.id} asChild>
+                                            <Link to={`/MenuItems/${item.url}`}>
+                                                {item.label}
                                             </Link>
                                         </MenubarItem>
                                     ))}
