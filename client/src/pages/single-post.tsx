@@ -5,8 +5,7 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
 import Footer from '@/components/layout/Footer'
 import Header from '@/components/layout/Header'
-import { BreadcrumbList, BreadcrumbItem, BreadcrumbLink, BreadcrumbSeparator } from "@/components/ui/breadcrumb"; // Import BreadcrumbSeparator
-import PostBreadcrumb from '@/components/blog/PostBreadcrumb'; // Import the new component
+import PostBreadcrumb from '@/components/blog/PostBreadcrumb';
 
 const GET_POST = gql`
   query GetPost($id: ID!) {
@@ -74,8 +73,6 @@ export default function SinglePost() {
                 <ThumbsUp className="h-4 w-4 mr-2" />
               </div>
             </div>
-
-
             <div className="prose max-w-none mb-4" dangerouslySetInnerHTML={{ __html: post.content }} />
             <div className="flex items-center space-x-4 text-muted-foreground mb-4">
               <span>Posted on {new Date(post.date).toLocaleDateString()} by <b>{post.author.node.name}</b></span>
