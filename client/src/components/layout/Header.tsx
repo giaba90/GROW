@@ -2,6 +2,7 @@ import { Link } from 'react-router-dom'
 import { Menubar, MenubarMenu, MenubarContent, MenubarItem, MenubarTrigger } from "@/components/ui/menubar"
 import { useState, useEffect } from 'react'
 import { useQuery, gql } from '@apollo/client'
+import { X, AlignJustify } from 'lucide-react';
 
 const GET_MENU = gql`
 query GetMenu {
@@ -11,7 +12,7 @@ query GetMenu {
         node {
             id
             label
-            url
+            uri
         }
       }
     }
@@ -22,7 +23,7 @@ query GetMenu {
 interface MenuItems {
     id: string;
     label: string;
-    url: string;
+    uri: string;
 }
 
 export default function Header() {
@@ -41,6 +42,9 @@ export default function Header() {
         setIsMenuOpen(!isMenuOpen);
     };
 
+    if (loading) return <p>Loading...</p>;
+    if (error) return <p>Error: {error.message}</p>;
+
     return (
         <header className="bg-primary text-primary-foreground p-4">
             <div className="container mx-auto flex justify-between items-center">
@@ -51,12 +55,12 @@ export default function Header() {
                         <Menubar>
                             <MenubarMenu>
                                 <MenubarTrigger onClick={toggleMenu}>
-                                    {isMenuOpen ? 'Close' : 'Menu'}
+                                    {!isMenuOpen ? <AlignJustify /> : <X />}
                                 </MenubarTrigger>
                                 <MenubarContent>
                                     {MenuItems.map((item) => (
                                         <MenubarItem key={item.id} asChild>
-                                            <Link to={`/MenuItems/${item.url}`}>
+                                            <Link to={item.uri}>
                                                 {item.label}
                                             </Link>
                                         </MenubarItem>
