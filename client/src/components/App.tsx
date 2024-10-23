@@ -9,7 +9,7 @@ function App() {
     <Router>
       <Routes>
         <Route path="/" element={<Homepage />} />
-        <Route path="/archive" element={<Archive />} />
+        <Route path="/archive/:slug" element={<Archive />} />
         <Route path="/post/:id" element={<SinglePost />} />
       </Routes>
     </Router>
