@@ -3,13 +3,10 @@ import { ChevronRight } from 'lucide-react';
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
 import { Post } from 'src/graphql/queries';
+import { Badge } from '../ui/badge';
 
-interface BlogPostCardProps {
-    post: Post;
-    categories: any;
-}
 
-export default function BlogPostCard({ post, categories }: BlogPostCardProps) {
+export default function BlogPostCard({ post }: { post: Post }) {
     return (
         <Card>
             <CardHeader>
@@ -21,11 +18,12 @@ export default function BlogPostCard({ post, categories }: BlogPostCardProps) {
             </CardHeader>
             <CardContent>
                 <CardTitle className="mb-2">{post.title}</CardTitle>
-                <p className="text-muted-foreground text-sm mb-2">
-                    {new Date(post.date).toLocaleDateString()}
-                </p>
-                {/* Displaying categories slug */}
-                <p>{categories.map((category: { slug: string }) => category.slug).join(", ")}</p>
+                <div className='flex content-center gap-x-4'>
+                    <p className="text-muted-foreground text-sm">
+                        {new Date(post.date).toLocaleDateString()}
+                    </p>
+                    <Link to={`/archive/${post.categories.nodes[0]?.slug}`}>    <Badge>{post.categories.nodes[0]?.slug}</Badge> </Link>
+                </div>
                 <div className="text-card-foreground" dangerouslySetInnerHTML={{ __html: post.excerpt }} />
             </CardContent>
             <CardFooter>
