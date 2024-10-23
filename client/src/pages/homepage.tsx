@@ -1,7 +1,8 @@
-import { useQuery, gql } from '@apollo/client'
-import Header from '@/components/layout/Header'
-import BlogPostList from '@/components/blog/BlogListPost'
-import Footer from '@/components/layout/Footer'
+import { useQuery, gql } from '@apollo/client';
+import Header from '@/components/layout/Header';
+import BlogPostList from '@/components/blog/BlogListPost';
+import Footer from '@/components/layout/Footer';
+import { Category } from 'src/types/category';
 
 const GET_POSTS = gql`
   query GetPosts {
@@ -35,14 +36,15 @@ export default function Homepage() {
   if (error) return <p>Error: {error.message}</p>;
 
   const blogPosts = data.posts.nodes;
+  const blogCategories: Category[] = data.categories.nodes; // Usa il tipo Category
 
   return (
     <div className="min-h-screen bg-background">
       <Header />
       <main className="container mx-auto p-4">
-        <BlogPostList posts={blogPosts} />
+        <BlogPostList posts={blogPosts} categories={blogCategories} />
       </main>
       <Footer />
     </div>
-  )
+  );
 }
