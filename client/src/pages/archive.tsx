@@ -1,25 +1,11 @@
 import { useParams, Link } from 'react-router-dom';
-import { useQuery, gql } from '@apollo/client';
+import { useQuery } from '@apollo/client';
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import Header from '@/components/layout/Header';
 import Footer from '@/components/layout/Footer';
-import { Post } from '@/types/post'; // Importa il tipo Post
+import { Post } from '@/types/post';
+import { GET_ARCHIVED_POSTS } from '@/graphql/queries';
 
-const GET_ARCHIVED_POSTS = gql`
-  query GetArchivedPosts($slug: String) {
-    posts(where: { categoryName: $slug }) {
-      nodes {
-        postId
-        title
-        featuredImage {
-          node {
-            sourceUrl
-          }
-        }
-      }
-    }
-  }
-`;
 
 export default function Archive() {
   const { slug } = useParams();
@@ -30,7 +16,6 @@ export default function Archive() {
   if (loading) return <p>Loading...</p>;
   if (error) return <p>Error: {error.message}</p>;
 
-  // Verifica se i post sono disponibili, altrimenti mostra un messaggio
   const archivedPosts: Post[] = data?.posts?.nodes || [];
 
   return (
