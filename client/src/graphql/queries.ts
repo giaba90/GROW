@@ -1,6 +1,5 @@
 import { gql } from '@apollo/client';
 
-// GraphQL query to get posts
 export const GET_POSTS = gql`
   query GetPosts {
     posts {
@@ -17,6 +16,23 @@ export const GET_POSTS = gql`
         categories {
           nodes {
             slug
+          }
+        }
+      }
+    }
+  }
+`;
+
+
+export const GET_ARCHIVED_POSTS = gql`
+  query GetArchivedPosts($slug: String) {
+    posts(where: { categoryName: $slug }) {
+      nodes {
+        postId
+        title
+        featuredImage {
+          node {
+            sourceUrl
           }
         }
       }
