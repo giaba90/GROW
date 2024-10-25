@@ -1,20 +1,21 @@
-import { useParams, Link } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 import { useQuery } from '@apollo/client';
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import Header from '@/components/layout/Header';
 import Footer from '@/components/layout/Footer';
+import ArchivedPostCard from '@/components/blog/ArchivedPostCard';
 import { Post } from '@/types/post';
 import { GET_ARCHIVED_POSTS } from '@/graphql/queries';
 
 
+
 export default function Archive() {
-  const { slug } = useParams();
+  const { slug } = useParams<{ slug: string }>();
   const { loading, error, data } = useQuery(GET_ARCHIVED_POSTS, {
     variables: { slug },
   });
 
-  if (loading) return <p>Loading...</p>;
-  if (error) return <p>Error: {error.message}</p>;
+  if (loading) return <p className="text-center">Caricamento in corso...</p>;
+  if (error) return <p className="text-center text-red-500">Errore: {error.message}</p>;
 
   const archivedPosts: Post[] = data?.posts?.nodes || [];
 
@@ -25,21 +26,8 @@ export default function Archive() {
         <h2 className="text-3xl font-bold mb-8 text-center">Archivio: {slug}</h2>
         {archivedPosts.length > 0 ? (
           <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-            {archivedPosts.map((post: Post) => (
-              <Card key={post.postId} className="overflow-hidden">
-                <Link to={`/post/${post.postId}`}>
-                  <CardHeader className="p-0">
-                    <img
-                      src={post.featuredImage?.node?.sourceUrl || "/placeholder.svg?height=150&width=200"}
-                      alt={post.title}
-                      className="w-full h-40 object-cover"
-                    />
-                  </CardHeader>
-                  <CardContent className="p-4">
-                    <CardTitle>{post.title}</CardTitle>
-                  </CardContent>
-                </Link>
-              </Card>
+            {archivedPosts.map((post) => (
+              <ArchivedPostCard key={post.postId} post={post} />
             ))}
           </div>
         ) : (
