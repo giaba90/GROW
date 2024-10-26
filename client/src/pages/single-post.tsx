@@ -59,7 +59,7 @@ export default function SinglePost() {
         <h2 className='text-base md:text-2xl my-4'> {post.title} </h2>
         <div className="flex flex-wrap gap-2 justify-between">
           <div className="flex items-center space-x-4 text-muted-foreground mb-4">
-            <span>Posted on {new Date(post.date).toLocaleDateString()} by <b>{post.author.node.name}</b></span>
+            <span>Posted on <strong>Category</strong> ,{new Date(post.date).toLocaleDateString()} by <b>{post.author.node.name}</b></span>
           </div>
           <div className="flex space-x-4">
             <Share2 className="h-4 w-4 mr-2" />
@@ -71,6 +71,7 @@ export default function SinglePost() {
         <div className="prose max-w-none mt-4 mb-4" dangerouslySetInnerHTML={{ __html: post.content }} />
 
         <span className="block mt-4 mb-4">
+          Tags:&nbsp;
           {post.tags.nodes.map((tag: { name: string }) => (
             <Badge key={tag.name} variant="outline">#{tag.name}</Badge>
           ))}
