@@ -1,6 +1,6 @@
 import { gql } from '@apollo/client';
 
-export const GET_POSTS = gql`
+export const GET_POSTS_HP = gql`
   query GetPosts {
     posts {
       nodes {
@@ -17,6 +17,38 @@ export const GET_POSTS = gql`
           nodes {
             slug
           }
+        }
+      }
+    }
+  }
+`;
+
+export const GET_POST = gql`
+  query GetPost($id: ID!) {
+    post(id: $id, idType: DATABASE_ID) {
+      postId
+      title
+      date
+      content
+      featuredImage {
+        node {
+          sourceUrl
+        }
+      }
+      author {
+        node {
+          name
+        }
+      }
+      categories {
+        nodes {
+          name
+          slug
+        }
+      }
+      tags {
+        nodes {
+          name
         }
       }
     }
