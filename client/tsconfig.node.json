@@ -19,5 +19,5 @@
   "include": [
     "vite.config.ts",
     "src/**/*.ts" // Aggiungi questo se necessario
-  ]
+, "src/components/blog/PostDetail.tsx"  ]
 }
