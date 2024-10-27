@@ -8,7 +8,7 @@ interface PostBreadcrumbProps {
 
 const PostBreadcrumb: React.FC<PostBreadcrumbProps> = ({ title }) => {
     return (
-        <Badge variant='secondary' className='ml-2 mt-2 mb-2 w-fit'>
+        <Badge variant='secondary' className='mt-2 mb-2 w-fit'>
             <BreadcrumbList>
                 <BreadcrumbItem>
                     <BreadcrumbLink asChild>
