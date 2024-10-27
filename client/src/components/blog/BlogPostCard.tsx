@@ -18,9 +18,9 @@ export default function BlogPostCard({ post }: { post: Post }) {
             </CardHeader>
             <CardContent>
                 <CardTitle className="mb-2">{post.title}</CardTitle>
-                <div className='flex content-center gap-x-4'>
+                <div className='flex items-center gap-x-4 mb-2'>
                     <p className="text-muted-foreground text-sm">
-                        {new Date(post.date).toLocaleDateString()}
+                        {new Date(post.date).toLocaleDateString('it-IT', { day: 'numeric', month: 'long', year: 'numeric' }).replace(/(\d+) (.+) (\d+)/, "$1 $2, $3")}
                     </p>
                     <Link to={`/archive/${post.categories.nodes[0]?.slug}`}>    <Badge>{post.categories.nodes[0]?.slug}</Badge> </Link>
                 </div>

@@ -1,11 +1,11 @@
 import { useQuery } from '@apollo/client';
-import { GET_POSTS, Post } from '@/graphql/queries';
+import { GET_POSTS_HP, Post } from '@/graphql/queries';
 import BlogPostList from '@/components/blog/BlogPostList';
 import Header from '@/components/layout/Header';
 import Footer from '@/components/layout/Footer';
 
 export default function Homepage() {
-  const { loading, error, data } = useQuery(GET_POSTS);
+  const { loading, error, data } = useQuery(GET_POSTS_HP);
 
   if (loading) return <p>Loading...</p>;
   if (error) return <p>Error: {error.message}</p>;
