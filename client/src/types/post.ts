@@ -1,10 +1,10 @@
-// src/types/post.ts
 export type Post = {
     postId: string;
     title: string;
-    featuredImage: {
-        node: {
-            sourceUrl: string;
-        };
-    };
+    categories: { nodes: { name: string }[] };
+    date: string;
+    author: { node: { name: string } };
+    featuredImage: { node: { sourceUrl: string } };
+    content: string;
+    tags: { nodes: { name: string }[] };
 };
