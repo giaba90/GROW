@@ -55,6 +55,14 @@ export const GET_POST = gql`
   }
 `;
 
+export const GET_PAGE = gql`
+query GetPageBySlug($slug: String!) {
+  pageBy(uri: $slug) {
+    id
+    title
+    content
+  }
+}`;
 
 export const GET_ARCHIVED_POSTS = gql`
   query GetArchivedPosts($slug: String) {
