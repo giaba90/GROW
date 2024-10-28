@@ -18,11 +18,10 @@ export default function PostDetails({ post }: PostDetailsProps) {
 
     return (
         <>
-            <PostBreadcrumb title={title} />
-            <h2 className="text-base md:text-2xl my-4" > {title} </h2>
+            <h2 className="text-2xl md:text-4xl my-4"> {title} </h2>
             < div className="flex flex-wrap gap-2 justify-between" >
                 <div className="flex items-center space-x-4 text-muted-foreground mb-4" >
-                    <span>
+                    <span className='text-sm md:text-base'>
                         Posted on {
                             categories.nodes.map((cat) => (
                                 <strong key={cat.name} > {cat.name} </strong>
@@ -30,7 +29,7 @@ export default function PostDetails({ post }: PostDetailsProps) {
                         }, {formattedDate} by < b > {author.node.name} </b>
                     </span>
                 </div>
-                < div className="flex space-x-4" >
+                <div className="hidden md:flex space-x-4" >
                     <MessageCircle className="h-4 w-4 mr-2 hover:text-blue-500" />
                     <Heart className="h-4 w-4 mr-2 hover:text-red-500" />
                     <Share2 className="h-4 w-4 mr-2 hover:text-green-500" />
@@ -44,7 +43,7 @@ export default function PostDetails({ post }: PostDetailsProps) {
             <div className="prose max-w-none mt-4 mb-4" dangerouslySetInnerHTML={{ __html: content }
             } />
             < div className="mt-4 mb-4" >
-                Tags:& nbsp;
+                Tags:&nbsp;
                 {
                     tags.nodes.map((tag) => (
                         <Badge key={tag.name} variant="outline" >#{tag.name} </Badge>
