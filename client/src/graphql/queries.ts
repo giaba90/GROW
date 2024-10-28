@@ -72,20 +72,18 @@ export const GET_ARCHIVED_POSTS = gql`
   }
 `;
 
-// Define the Post type
-export interface Post {
-  postId: string;
-  title: string;
-  date: string;
-  excerpt: string;
-  featuredImage?: {
-    node: {
-      sourceUrl: string;
-    };
-  };
-  categories: {
-    nodes: {
-      slug: string;
-    }[];
-  };
-}
+export const GET_MENU = gql`
+  query GetMenu {
+    menu(id: "menu-principale", idType: SLUG) {
+      menuItems {
+        edges {
+          node {
+            id
+            label
+            uri
+          }
+        }
+      }
+    }
+  }
+`;

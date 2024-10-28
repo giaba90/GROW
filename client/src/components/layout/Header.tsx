@@ -1,26 +1,12 @@
 import { Link } from 'react-router-dom';
 import { useState, useEffect } from 'react';
-import { useQuery, gql } from '@apollo/client';
+import { useQuery } from '@apollo/client';
 import { X, AlignJustify } from 'lucide-react';
 import { Menubar, MenubarMenu, MenubarContent, MenubarItem, MenubarTrigger } from "@/components/ui/menubar";
 import Navbar from '@/components/ui/Navbar';
 import { MenuItems } from '@/types/menu';
+import { GET_MENU } from '@/graphql/queries';
 
-const GET_MENU = gql`
-  query GetMenu {
-    menu(id: "menu-principale", idType: SLUG) {
-      menuItems {
-        edges {
-          node {
-            id
-            label
-            uri
-          }
-        }
-      }
-    }
-  }
-`;
 
 export default function Header() {
     const [isMenuOpen, setIsMenuOpen] = useState(false);
