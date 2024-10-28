@@ -1,5 +1,6 @@
 import { useQuery } from '@apollo/client';
-import { GET_POSTS_HP, Post } from '@/graphql/queries';
+import { GET_POSTS_HP } from '@/graphql/queries';
+import { Post } from '@/types/post';
 import BlogPostList from '@/components/blog/BlogPostList';
 import Header from '@/components/layout/Header';
 import Footer from '@/components/layout/Footer';
