@@ -1,5 +1,5 @@
 import BlogPostCard from '@/components/blog/BlogPostCard';
-import { Post } from '@/graphql/queries';
+import { Post } from '@/types/post';
 
 // Correzione della tipizzazione: posts è direttamente un array di Post
 const BlogPostList: React.FC<{ posts: Post[] }> = ({ posts }) => {

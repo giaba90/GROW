@@ -1,10 +1,12 @@
 export type Post = {
     postId: string;
     title: string;
-    categories: { nodes: { name: string }[] };
+    categories: { nodes: { name: string, slug: string; }[] };
     date: string;
     author: { node: { name: string } };
     featuredImage: { node: { sourceUrl: string } };
     content: string;
+    excerpt: string;
+
     tags: { nodes: { name: string }[] };
 };

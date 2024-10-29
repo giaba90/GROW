@@ -1,9 +1,11 @@
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { Search, Mail, Facebook, Instagram, Linkedin, Badge as LucideBadge } from 'lucide-react';
+import {
+    Search, Mail, Facebook, Instagram, Linkedin
+} from 'lucide-react';
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { Badge as UiBadge } from '../ui/badge';
+import { Badge } from '../ui/badge';
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { GET_CATEGORIES } from '@/graphql/queries';
 import { useQuery } from '@apollo/client';
@@ -57,7 +59,7 @@ export default function Sidebar() {
                             category.name !== "Senza categoria" && (
                                 <li key={category.id}>
                                     <Link to={`/archive/${category.slug}`} className="text-gray-700 hover:underline">
-                                        {category.name} <UiBadge>{category.count}</UiBadge>
+                                        {category.name} <Badge>{category.count}</Badge>
                                     </Link>
                                 </li>
                             )

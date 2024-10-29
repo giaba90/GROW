@@ -2,7 +2,7 @@ import { Link } from 'react-router-dom';
 import { ChevronRight } from 'lucide-react';
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
-import { Post } from 'src/graphql/queries';
+import { Post } from '@/types/post';
 import { Badge } from '../ui/badge';
 
 
