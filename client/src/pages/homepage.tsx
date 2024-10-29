@@ -4,6 +4,7 @@ import { Post } from '@/types/post';
 import BlogPostList from '@/components/blog/BlogPostList';
 import Header from '@/components/layout/Header';
 import Footer from '@/components/layout/Footer';
+import Sidebar from '@/components/layout/Sidebar';
 
 export default function Homepage() {
   const { loading, error, data } = useQuery(GET_POSTS_HP);
@@ -16,9 +17,14 @@ export default function Homepage() {
   return (
     <div className="min-h-screen bg-background">
       <Header />
-      <main className="container mx-auto p-4">
-        <BlogPostList posts={blogPosts} />
-      </main>
+      <div className="container mx-auto p-4">
+        <div className="flex flex-col md:flex-row gap-8">
+          <main className="w-full md:w-2/3 lg:w-3/4">
+            <BlogPostList posts={blogPosts} />
+          </main>
+          <Sidebar />
+        </div>
+      </div>
       <Footer />
     </div>
   );

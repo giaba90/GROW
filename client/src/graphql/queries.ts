@@ -2,24 +2,26 @@ import { gql } from '@apollo/client';
 
 export const GET_POSTS_HP = gql`
   query GetPosts {
-    posts {
-      nodes {
-        postId
-        title
-        date
-        excerpt
-        featuredImage {
-          node {
-            sourceUrl
-          }
+  posts {
+    nodes {
+      postId
+      title
+      date
+      excerpt
+      featuredImage {
+        node {
+          sourceUrl
         }
-        categories {
-          nodes {
-            slug
-          }
+      }
+      categories {
+        nodes {
+          slug
+          termTaxonomyId
+          name
         }
       }
     }
+  }
   }
 `;
 
@@ -79,6 +81,16 @@ export const GET_ARCHIVED_POSTS = gql`
     }
   }
 `;
+
+export const GET_CATEGORIES = gql` query GetCategories {
+  categories {
+    nodes {
+      name
+      slug
+      termTaxonomyId
+    }
+  }
+}`;
 
 export const GET_MENU = gql`
   query GetMenu {
