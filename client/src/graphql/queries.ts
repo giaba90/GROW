@@ -82,15 +82,20 @@ export const GET_ARCHIVED_POSTS = gql`
   }
 `;
 
-export const GET_CATEGORIES = gql` query GetCategories {
-  categories {
-    nodes {
-      name
-      slug
-      termTaxonomyId
+
+export const GET_CATEGORIES = gql`
+  query GET_CATEGORIES {
+    categories {
+      nodes {
+        id
+        name
+        slug
+        count
+      }
     }
   }
-}`;
+`;
+
 
 export const GET_MENU = gql`
   query GetMenu {
