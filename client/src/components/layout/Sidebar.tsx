@@ -1,33 +1,35 @@
-import { useState } from 'react'
-import { Link } from 'react-router-dom'
-import { Search, Mail, Facebook, Instagram, Linkedin } from 'lucide-react'
-import { Button } from "@/components/ui/button"
-import { Input } from "@/components/ui/input"
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
-import { GET_CATEGORIES } from '@/graphql/queries'
+import { useState } from 'react';
+import { Link } from 'react-router-dom';
+import { Search, Mail, Facebook, Instagram, Linkedin, Badge as LucideBadge } from 'lucide-react';
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import { Badge as UiBadge } from '../ui/badge';
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { GET_CATEGORIES } from '@/graphql/queries';
 import { useQuery } from '@apollo/client';
 
 // Define the Category type
 type Category = {
-    termTaxonomyId: string
-    slug: string
-    name: string
-}
+    id: string;
+    slug: string;
+    name: string;
+    count: number;
+};
 
 export default function Sidebar() {
-    const [email, setEmail] = useState('')
+    const [email, setEmail] = useState('');
 
     const handleSubmit = (e: React.FormEvent) => {
-        e.preventDefault()
+        e.preventDefault();
         // Handle newsletter subscription
-        console.log('Subscribed:', email)
-        setEmail('')
-    }
+        console.log('Subscribed:', email);
+        setEmail('');
+    };
+
     const { loading, error, data } = useQuery(GET_CATEGORIES);
 
     if (loading) return <p>Loading...</p>;
     if (error) return <p>Error: {error.message}</p>;
-
 
     return (
         <aside className="w-full md:w-1/3 lg:w-1/4 space-y-6">
@@ -52,11 +54,13 @@ export default function Sidebar() {
                 <CardContent>
                     <ul className="space-y-2">
                         {data.categories.nodes.map((category: Category) => (
-                            <li key={category.termTaxonomyId}>
-                                <Link to={`/category/${category.slug}`} className="text-gray-700 hover:underline">
-                                    {category.name}
-                                </Link>
-                            </li>
+                            category.name !== "Senza categoria" && (
+                                <li key={category.id}>
+                                    <Link to={`/archive/${category.slug}`} className="text-gray-700 hover:underline">
+                                        {category.name} <UiBadge>{category.count}</UiBadge>
+                                    </Link>
+                                </li>
+                            )
                         ))}
                     </ul>
                 </CardContent>
@@ -103,5 +107,5 @@ export default function Sidebar() {
                 </CardContent>
             </Card>
         </aside>
-    )
+    );
 }
