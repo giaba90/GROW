@@ -38,7 +38,7 @@ export default function Sidebar() {
                 <CardContent>
                     <form className="flex items-center space-x-2">
                         <Input type="search" placeholder="Cerca..." />
-                        <Button type="submit" size="icon">
+                        <Button type="submit">
                             <Search className="h-4 w-4" />
                         </Button>
                     </form>
