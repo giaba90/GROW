@@ -5,6 +5,7 @@ import BlogPostList from '@/components/blog/BlogPostList';
 import Header from '@/components/layout/Header';
 import Footer from '@/components/layout/Footer';
 import Sidebar from '@/components/layout/Sidebar';
+import React from 'react';
 
 export default function Homepage() {
   const { loading, error, data } = useQuery(GET_POSTS_HP);
