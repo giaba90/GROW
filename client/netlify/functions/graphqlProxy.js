@@ -1,10 +1,11 @@
-const fetch = require('node-fetch');
 const https = require('https');
 
 // Ignora certificati non validi (opzionale, solo se il certificato del server è autofirmato o non valido)
 const agent = new https.Agent({ rejectUnauthorized: false });
 
 exports.handler = async function (event, context) {
+    // Importa node-fetch dinamicamente
+    const fetch = (...args) => import('node-fetch').then(({ default: fetch }) => fetch(...args));
     const url = 'https://51.21.6.145/wordpress/graphql';
 
     console.log("Inoltrando richiesta a:", url);
