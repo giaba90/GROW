@@ -1,25 +1,24 @@
 const https = require('https');
 
-// Ignora certificati non validi (opzionale, solo se il certificato del server è autofirmato o non valido)
+// Importa node-fetch dinamicamente per supportare CommonJS
+const fetch = (...args) => import('node-fetch').then(({ default: fetch }) => fetch(...args));
+
 const agent = new https.Agent({ rejectUnauthorized: false });
 
 exports.handler = async function (event, context) {
-    // Importa node-fetch dinamicamente
-    const fetch = (...args) => import('node-fetch').then(({ default: fetch }) => fetch(...args));
     const url = 'https://51.21.6.145/wordpress/graphql';
 
     console.log("Inoltrando richiesta a:", url);
 
     try {
-        // Inoltra la richiesta al server
         const response = await fetch(url, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
-                'Authorization': event.headers.authorization || '', // se necessario
+                'Authorization': event.headers.authorization || '',
             },
-            body: event.body, // inoltra il body della richiesta originale
-            agent: agent // utilizza l'agent per ignorare SSL (opzionale)
+            body: event.body,
+            agent: agent,
         });
 
         console.log("Risposta ricevuta:", response.status);
@@ -30,7 +29,7 @@ exports.handler = async function (event, context) {
             statusCode: response.status,
             body: JSON.stringify(data),
             headers: {
-                'Access-Control-Allow-Origin': '*', // Puoi specificare l'origine in modo più restrittivo, se necessario
+                'Access-Control-Allow-Origin': '*',
                 'Access-Control-Allow-Headers': 'Content-Type, Authorization',
             },
         };
