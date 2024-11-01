@@ -11,25 +11,29 @@ exports.handler = async function (event, context) {
     console.log("Inoltrando richiesta a:", url);
 
     try {
+        // Esegue la query di test { __typename }
         const response = await fetch(url, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
                 'Authorization': event.headers.authorization || '',
             },
-            body: event.body,
-            agent: agent,
+            body: JSON.stringify({
+                query: "{ __typename }"  // Query di test
+            }),
+            agent: agent, // Ignora certificati SSL non validi, se necessario
         });
 
         console.log("Risposta ricevuta:", response.status);
 
         const data = await response.json();
+        console.log("Dati ricevuti:", data); // Log per vedere la risposta esatta
 
         return {
             statusCode: response.status,
             body: JSON.stringify(data),
             headers: {
-                'Access-Control-Allow-Origin': '*',
+                'Access-Control-Allow-Origin': '*', // Puoi specificare l'origine in modo più restrittivo, se necessario
                 'Access-Control-Allow-Headers': 'Content-Type, Authorization',
             },
         };
