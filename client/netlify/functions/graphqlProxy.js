@@ -2,7 +2,7 @@ const fetch = require('node-fetch');
 
 exports.handler = async function (event, context) {
     // URL del server di destinazione
-    const url = 'https://51.21.6.145/graphql';
+    const url = 'https://51.21.6.145/wordpress/graphql';
 
     // Inoltra la richiesta al server
     const response = await fetch(url, {
