@@ -50,7 +50,7 @@ export default function Header() {
                                     <MenubarContent>
                                         {menuItems.map((item) => (
                                             <MenubarItem key={item.id} asChild>
-                                                <Link to={`/page/${item.uri}`}>{item.label}</Link>
+                                                <Link to={`/page${item.uri}`}>{item.label}</Link>
                                             </MenubarItem>
                                         ))}
                                     </MenubarContent>

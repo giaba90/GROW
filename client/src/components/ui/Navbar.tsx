@@ -19,7 +19,7 @@ const Navbar: React.FC<{ items: { id: string; uri: string; label: string }[] }> 
 const NavBarItem: React.FC<{ url: string; label: string }> = ({ url, label }) => {
     return (
         <li>
-            <a href={`/page/${url}`} className="text-gray-300 hover:text-white px-3 py-2 rounded-md text-sm font-medium">
+            <a href={`/page${url}`} className="text-gray-300 hover:text-white px-3 py-2 rounded-md text-sm font-medium">
                 {label}
             </a>
         </li>
