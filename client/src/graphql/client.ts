@@ -1,24 +1,14 @@
-import { ApolloClient, InMemoryCache, HttpLink, ApolloLink } from '@apollo/client';
+import { ApolloClient, InMemoryCache, HttpLink } from '@apollo/client';
 
-// Definisci il link HTTP per il tuo server GraphQL
 const httpLink = new HttpLink({
-    uri: 'https://51.21.6.145/wordpress/graphql',
+    uri: 'https://51.21.6.145/wordpress/graphql', // Sostituisci con l'URL del tuo endpoint GraphQL di WordPress
+    fetchOptions: {
+        mode: 'cors',
+    },
 });
 
-// Crea un link che rimuove l'intestazione 'apollographql-client-version'
-const removeHeaderLink = new ApolloLink((operation, forward) => {
-    operation.setContext(({ headers = {} }) => ({
-        headers: {
-            ...headers,
-            'apollographql-client-version': undefined, // Rimuove l'intestazione specifica
-        },
-    }));
-    return forward(operation);
-});
-
-// Configura Apollo Client con il link modificato
 const client = new ApolloClient({
-    link: ApolloLink.from([removeHeaderLink, httpLink]), // Combina i link
+    link: httpLink,
     cache: new InMemoryCache(),
 });
 
