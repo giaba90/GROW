@@ -2,7 +2,7 @@ import { gql } from '@apollo/client';
 
 export const GET_POSTS_HP = gql`
   query GetPosts {
-  posts {
+  posts(first: 6) {
     nodes {
       postId
       title
