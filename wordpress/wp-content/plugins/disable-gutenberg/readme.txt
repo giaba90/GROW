@@ -10,8 +10,8 @@ Donate link: https://monzillamedia.com/donate.html
 Contributors: specialk
 Requires at least: 4.9
 Tested up to: 6.7
-Stable tag: 3.2.1
-Version:    3.2.1
+Stable tag: 3.2.2
+Version:    3.2.2
 Requires PHP: 5.6.20
 Text Domain: disable-gutenberg
 Domain Path: /languages
@@ -305,10 +305,10 @@ Thank you to everyone for using Disable Gutenberg and for all the [awesome 5-sta
 If you have any feedback or suggestions to make this plugin the absolute best it can be, and/or would like to help with development, please reach me via the [contact form](https://plugin-planet.com/support/#contact) at Plugin Planet.
 
 
-**3.2.1 (2024/10/06)**
+**3.2.2 (2024/11/02)**
 
-* Fixes bug with `disable_gutenberg_explode()`
-* Tests on WordPress 6.7 (beta)
+* Fixes bug with textdomain loading ([Thanks](https://wordpress.org/support/topic/not-compatible-with-6-7/) [@opajaap](https://wordpress.org/support/users/opajaap/))
+* Tests on WordPress 6.7
 
 
 Full changelog @ [https://plugin-planet.com/wp/changelog/disable-gutenberg.txt](https://plugin-planet.com/wp/changelog/disable-gutenberg.txt)
