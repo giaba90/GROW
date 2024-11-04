@@ -21,18 +21,18 @@ Work in progress
 
 # TECNOLOGIE USATE
 
-Frontend: Vite + ReactJS + Apollo client + Shadcn-ui + Tailwindcss
-
-Backend: WordPress Headless + GraphQL Api plugin
-
-Server: docker container con dentro WordPress
-
-CI/CD: Github
-
+Per realizzare il frontend ho usato il framework reactjs con le librerie Shadcn-ui e Tailwindcss.
+Per le chiamate al database ho usato Apollo client e le GraphQL query.
+Per una maggiore velocità di sviluppo del progetto , ho usato una installazione WordPress headless per il backend.
+In locale ho montato un container docker con una immagine di wordpress e php 8.2 , una configurazione docker-compose mi ha aiutato ad preparare tutto l'ambiente locale di backend. 
+L'installazione di WP prevede una tema base preso dal repo ufficiale di wordpres e tre plugins: dummy data , graphql server e disable gutenberg(opzionale).
+Tutto il progetto è caricato su Github.
 
 # DETTAGLI IMPLEMANTITIVI
 
-Work in progress
+In produzione il frontend è caricato su netlify con un pipeline di ci/co collegato al mio account github.
+Il backend è su una instanza ec2 micro.t3 di Amazon AWS con indirizzo ip statico. 
+Piattaforma: Linux Ubuntu 22 con Server apache2
 
 
 # CONTRIBUTI:
