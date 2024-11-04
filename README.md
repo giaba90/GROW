@@ -1,3 +1,5 @@
+[![Netlify Status](https://api.netlify.com/api/v1/badges/4d16e888-960a-4174-b2db-45acc92ffb8a/deploy-status)](https://app.netlify.com/sites/wpgrow/deploys)
+
 # PREVIEW
 
 Homepage : [Preview](https://wpgrow.netlify.app/)
