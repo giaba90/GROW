@@ -11,7 +11,7 @@ function App() {
         <Route path="/" element={<Homepage />} />
         <Route path="/archive/:slug" element={<Archive />} />
         <Route path="/post/:id" element={<SinglePost />} />
-        <Route path="/:slug" element={<Page />} />
+        <Route path="/page/:slug" element={<Page />} />
       </Routes>
     </Router>
   );
