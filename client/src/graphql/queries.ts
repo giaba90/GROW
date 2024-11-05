@@ -26,49 +26,52 @@ export const GET_POSTS_HP = gql`
 `;
 
 export const GET_POST_AND_ARCHIVED_POSTS = gql`
-  query GetPostAndArchivedPosts($id: ID!, $idType: PostIdType!, $slug: String!) {
-    post(id: $id, idType: $idType) {
+query GetPostAndArchivedPosts($id: ID!, $idType: PostIdType!, $categoryId: Int!) {
+  post(id: $id, idType: $idType) {
+    id
+    postId
+    title
+    date
+    content
+    featuredImage {
+      node {
+        sourceUrl
+      }
+    }
+    author {
+      node {
+        name
+      }
+    }
+    categories {
+      nodes {
+        categoryId
+        slug
+        name
+      }
+    }
+    tags {
+      nodes {
+        name
+      }
+    }
+  }
+  posts(where: { categoryId: $categoryId }, first: 3) {
+    nodes {
       id
       postId
       title
-      date
-      content
+      excerpt
+      slug
       featuredImage {
         node {
           sourceUrl
         }
       }
-      author {
-        node {
-          name
-        }
-      }
-      categories {
-        nodes {
-          slug
-          name
-        }
-      }
-      tags {
-        nodes {
-          name
-        }
-      }
-    }
-    posts(where: { categoryName: $slug }, first: 3) {
-      nodes {
-        id
-        title
-        excerpt
-        slug
-        featuredImage {
-          node {
-            sourceUrl
-          }
-        }
-      }
     }
   }
+}
+
 `;
 
 export const GET_PAGE = gql`

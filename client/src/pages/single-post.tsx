@@ -34,7 +34,7 @@ const SinglePost: React.FC = () => {
     variables: {
       id,
       idType: 'DATABASE_ID',
-      slug: "",
+      categoryId: 0, // Placeholder iniziale
     },
     skip: !id,
   });
@@ -44,9 +44,35 @@ const SinglePost: React.FC = () => {
   if (!data) return null;
 
   const post = data.post;
-  const slug = post.categories.nodes[0]?.slug || "";
+  const categoryId = parseInt(post.categories.nodes[0]?.categoryId, 10) || 0;
 
-  const archivedPosts: Post[] = data.posts?.nodes || [];
+  if (!categoryId) {
+    return (
+      <div className="min-h-screen bg-background">
+        <Header />
+        <main className="container mx-auto p-4">
+          <Button size="sm" variant="outline" onClick={() => window.history.back()}>
+            <MoveLeft /> Torna indietro
+          </Button>
+          <PostDetails post={post} />
+          <p className="text-center">Nessun articolo correlato trovato.</p>
+        </main>
+        <Footer />
+      </div>
+    );
+  }
+
+  // Esegui una nuova query con il `categoryId` aggiornato
+  const { data: relatedPostsData } = useQuery(GET_POST_AND_ARCHIVED_POSTS, {
+    variables: {
+      id,
+      idType: 'DATABASE_ID',
+      categoryId,
+    },
+    skip: !categoryId,
+  });
+
+  const archivedPosts: Post[] = relatedPostsData?.posts?.nodes || [];
 
   return (
     <div className="min-h-screen bg-background">
@@ -56,7 +82,7 @@ const SinglePost: React.FC = () => {
           <MoveLeft /> Torna indietro
         </Button>
         <PostDetails post={post} />
-        {slug ? <RelatedPosts posts={archivedPosts} /> : <p className="text-center">Nessun articolo correlato trovato.</p>}
+        <RelatedPosts posts={archivedPosts} />
       </main>
       <Footer />
     </div>
