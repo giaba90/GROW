@@ -34,8 +34,21 @@ const SinglePost: React.FC = () => {
     variables: {
       id,
       idType: 'DATABASE_ID',
+      categoryId: 0,
     },
     skip: !id,
+  });
+
+  // Determina il `categoryId` da usare nella seconda query
+  const categoryId = data?.post?.categories.nodes[0]?.categoryId || 0;
+  // Seconda query per ottenere i post correlati
+  const { data: relatedPostsData } = useQuery(GET_POST_AND_ARCHIVED_POSTS, {
+    variables: {
+      id,
+      idType: 'DATABASE_ID',
+      categoryId,
+    },
+    skip: !categoryId, // Esegui la query solo se `categoryId` è valido
   });
 
   if (loading) return <Loading />;
