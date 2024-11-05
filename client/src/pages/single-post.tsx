@@ -30,6 +30,7 @@ const RelatedPosts: React.FC<{ posts: Post[] }> = ({ posts }) => (
 const SinglePost: React.FC = () => {
   const { id } = useParams<{ id: string }>();
 
+  // Prima query per ottenere il post principale
   const { loading, error, data } = useQuery(GET_POST_AND_ARCHIVED_POSTS, {
     variables: {
       id,
@@ -39,39 +40,24 @@ const SinglePost: React.FC = () => {
     skip: !id,
   });
 
-  if (loading) return <Loading />;
-  if (error) return <ErrorMessage message={error.message} />;
-  if (!data) return null;
+  // Determina il `categoryId` da usare nella seconda query
+  const categoryId = data?.post?.categories.nodes[0]?.categoryId || 0;
 
-  const post = data.post;
-  const categoryId = parseInt(post.categories.nodes[0]?.categoryId, 10) || 0;
-
-  if (!categoryId) {
-    return (
-      <div className="min-h-screen bg-background">
-        <Header />
-        <main className="container mx-auto p-4">
-          <Button size="sm" variant="outline" onClick={() => window.history.back()}>
-            <MoveLeft /> Torna indietro
-          </Button>
-          <PostDetails post={post} />
-          <p className="text-center">Nessun articolo correlato trovato.</p>
-        </main>
-        <Footer />
-      </div>
-    );
-  }
-
-  // Esegui una nuova query con il `categoryId` aggiornato
+  // Seconda query per ottenere i post correlati
   const { data: relatedPostsData } = useQuery(GET_POST_AND_ARCHIVED_POSTS, {
     variables: {
       id,
       idType: 'DATABASE_ID',
       categoryId,
     },
-    skip: !categoryId,
+    skip: !categoryId, // Esegui la query solo se `categoryId` è valido
   });
 
+  if (loading) return <Loading />;
+  if (error) return <ErrorMessage message={error.message} />;
+  if (!data) return null;
+
+  const post = data.post;
   const archivedPosts: Post[] = relatedPostsData?.posts?.nodes || [];
 
   return (
