@@ -25,36 +25,31 @@ export const GET_POSTS_HP = gql`
   }
 `;
 
-export const GET_POST = gql`
-  query GetPost($id: ID!) {
-    post(id: $id, idType: DATABASE_ID) {
-      postId
-      title
-      date
-      content
-      featuredImage {
-        node {
-          sourceUrl
-        }
-      }
-      author {
-        node {
-          name
-        }
-      }
-      categories {
-        nodes {
-          name
-          slug
-        }
-      }
-      tags {
-        nodes {
-          name
-        }
+export const GET_POST_AND_ARCHIVED_POSTS = gql`
+  query GetPostAndArchivedPosts($id: ID!, $slug: String!) {
+  post(id: $id) {
+    id
+    title
+    content
+    categories {
+      nodes {
+        slug
+        name
       }
     }
+    # Altri campi per il post
   }
+  posts(where: { categoryName: $slug }, first: 5) {
+    nodes {
+      id
+      title
+      excerpt
+      slug
+      # Altri campi per i post correlati
+    }
+  }
+}
+
 `;
 
 export const GET_PAGE = gql`

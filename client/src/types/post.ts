@@ -1,4 +1,5 @@
 export type Post = {
+    [x: string]: any;
     postId: string;
     title: string;
     categories: { nodes: { name: string, slug: string; }[] };
