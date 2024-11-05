@@ -36,6 +36,13 @@ In produzione il frontend è caricato su netlify con un pipeline di ci/co colleg
 Il backend è su una instanza ec2 micro.t3 di Amazon AWS con indirizzo ip statico. 
 Piattaforma: Linux Ubuntu 22 con Server apache2
 
+# SICUREZZA
+
+Per questo progetto sono stati utilizzati due strumenti da linea di comando: depcheck ed npm-check.
+
+- depcheck: Questo strumento è in grado di scansionare il tuo progetto per identificare quali dipendenze dichiarate in package.json non vengono effettivamente importate nel codice.
+
+- npm-check: Oltre a verificare le dipendenze inutilizzate, questo strumento ti consente anche di aggiornare pacchetti obsoleti.
 
 # CONTRIBUTI:
 

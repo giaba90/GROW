@@ -30,7 +30,6 @@ const RelatedPosts: React.FC<{ posts: Post[] }> = ({ posts }) => (
 const SinglePost: React.FC = () => {
   const { id } = useParams<{ id: string }>();
 
-  // Prima query per ottenere il post principale
   const { loading, error, data } = useQuery(GET_POST_AND_ARCHIVED_POSTS, {
     variables: {
       id,
@@ -57,7 +56,7 @@ const SinglePost: React.FC = () => {
   if (!data) return null;
 
   const post = data.post;
-  const archivedPosts: Post[] = relatedPostsData?.posts?.nodes || [];
+  const archivedPosts: Post[] = data.relatedPosts?.nodes || [];
 
   return (
     <div className="min-h-screen bg-background">
