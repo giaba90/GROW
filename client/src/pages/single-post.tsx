@@ -35,7 +35,7 @@ const SinglePost: React.FC = () => {
     variables: {
       id,
       idType: 'DATABASE_ID',
-      categoryId: 0, // Placeholder iniziale
+      categoryId: 0,
     },
     skip: !id,
   });
