@@ -30,27 +30,12 @@ const RelatedPosts: React.FC<{ posts: Post[] }> = ({ posts }) => (
 const SinglePost: React.FC = () => {
   const { id } = useParams<{ id: string }>();
 
-  // Prima query per ottenere il post principale
   const { loading, error, data } = useQuery(GET_POST_AND_ARCHIVED_POSTS, {
     variables: {
       id,
       idType: 'DATABASE_ID',
-      categoryId: 0, // Placeholder iniziale
     },
     skip: !id,
-  });
-
-  // Determina il `categoryId` da usare nella seconda query
-  const categoryId = data?.post?.categories.nodes[0]?.categoryId || 0;
-
-  // Seconda query per ottenere i post correlati
-  const { data: relatedPostsData } = useQuery(GET_POST_AND_ARCHIVED_POSTS, {
-    variables: {
-      id,
-      idType: 'DATABASE_ID',
-      categoryId,
-    },
-    skip: !categoryId, // Esegui la query solo se `categoryId` è valido
   });
 
   if (loading) return <Loading />;
@@ -58,7 +43,7 @@ const SinglePost: React.FC = () => {
   if (!data) return null;
 
   const post = data.post;
-  const archivedPosts: Post[] = relatedPostsData?.posts?.nodes || [];
+  const archivedPosts: Post[] = data.relatedPosts?.nodes || [];
 
   return (
     <div className="min-h-screen bg-background">
