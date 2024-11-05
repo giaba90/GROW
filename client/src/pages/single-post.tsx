@@ -42,7 +42,6 @@ const SinglePost: React.FC = () => {
 
   // Determina il `categoryId` da usare nella seconda query
   const categoryId = data?.post?.categories.nodes[0]?.categoryId || 0;
-
   // Seconda query per ottenere i post correlati
   const { data: relatedPostsData } = useQuery(GET_POST_AND_ARCHIVED_POSTS, {
     variables: {
