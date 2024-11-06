@@ -68,7 +68,7 @@ query GetPageBySlug($slug: String!) {
   }
 }`;
 
-export const GET_ARCHIVED_POSTS = gql`
+export const GET_RELATED_POSTS = gql`
 query GetArchivedPosts($categoryId: Int) {
   # Ottieni i post filtrati in base all'ID della categoria
   posts(where: { categoryId: $categoryId }) {

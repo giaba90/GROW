@@ -7,7 +7,7 @@ import { Button } from '@/components/ui/button';
 import { MoveLeft } from 'lucide-react';
 import { Post } from '@/types/post';
 import ArchivedPostCard from '@/components/blog/ArchivedPostCard';
-import { GET_POST, GET_ARCHIVED_POSTS } from '@/graphql/queries';
+import { GET_POST, GET_RELATED_POSTS } from '@/graphql/queries';
 
 const Loading = () => <p>Loading...</p>;
 const ErrorMessage = ({ message }: { message: string }) => <p className="text-red-500">Error: {message}</p>;
@@ -40,7 +40,7 @@ const SinglePost: React.FC = () => {
 
   const categoryId = data?.post?.categories.nodes[0]?.categoryId || 0;
 
-  const { data: relatedPostsData } = useQuery(GET_ARCHIVED_POSTS, {
+  const { data: relatedPostsData } = useQuery(GET_RELATED_POSTS, {
     variables: {
       categoryId,
     },
