@@ -84,7 +84,20 @@ query GetArchivedPosts($categoryId: Int) {
   }
 }
 `;
-
+export const GET_ARCHIVED_POSTS = gql`
+ query GetArchivedPosts($slug: String) {
+  posts(where: { categoryName: $slug }) {
+      nodes {
+      postId
+      title
+        featuredImage {
+          node {
+          sourceUrl
+        }
+      }
+    }
+  }
+}`;
 
 export const GET_CATEGORIES = gql`
   query GET_CATEGORIES {
