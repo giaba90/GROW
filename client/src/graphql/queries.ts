@@ -25,53 +25,38 @@ export const GET_POSTS_HP = gql`
   }
 `;
 
-export const GET_POST_AND_ARCHIVED_POSTS = gql`
-query GetPostAndArchivedPosts($id: ID!, $idType: PostIdType!, $categoryId: Int!) {
+export const GET_POST = gql`
+query GetPost($id: ID!, $idType: PostIdType!) {
   post(id: $id, idType: $idType) {
-    id
-    postId
-    title
-    date
-    content
-    featuredImage {
+    id                 # ID globale del post (non specifico del database)
+    postId             # ID specifico del post nel database
+    title              # Titolo del post
+    date               # Data di pubblicazione del post
+    content            # Contenuto completo del post
+    featuredImage {    # Immagine in evidenza del post, se presente
       node {
-        sourceUrl
+        sourceUrl      # URL dell'immagine in evidenza
       }
     }
-    author {
+    author {           # Dettagli dell'autore del post
       node {
-        name
+        name           # Nome dell'autore
       }
     }
-    categories {
+    categories {       # Categorie associate al post
       nodes {
-        categoryId
-        slug
-        name
+        categoryId     # ID della categoria nel database
+        slug           # Slug della categoria
+        name           # Nome della categoria
       }
     }
-    tags {
+    tags {             # Tag associati al post
       nodes {
-        name
-      }
-    }
-  }
-  posts(where: { categoryId: $categoryId }, first: 3) {
-    nodes {
-      id
-      postId
-      title
-      excerpt
-      slug
-      featuredImage {
-        node {
-          sourceUrl
-        }
+        name           # Nome di ciascun tag
       }
     }
   }
 }
-
 `;
 
 export const GET_PAGE = gql`
@@ -84,19 +69,20 @@ query GetPageBySlug($slug: String!) {
 }`;
 
 export const GET_ARCHIVED_POSTS = gql`
-  query GetArchivedPosts($slug: String) {
-    posts(where: { categoryName: $slug }) {
-      nodes {
-        postId
-        title
-        featuredImage {
-          node {
-            sourceUrl
-          }
+query GetArchivedPosts($categoryId: Int) {
+  # Ottieni i post filtrati in base all'ID della categoria
+  posts(where: { categoryId: $categoryId }) {
+    nodes {
+      postId             # ID univoco del post nel database
+      title              # Titolo del post
+      featuredImage {    # Immagine in evidenza associata al post, se presente
+        node {
+          sourceUrl      # URL dell'immagine in evidenza
         }
       }
     }
   }
+}
 `;
 
 

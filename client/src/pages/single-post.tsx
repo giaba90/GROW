@@ -7,7 +7,7 @@ import { Button } from '@/components/ui/button';
 import { MoveLeft } from 'lucide-react';
 import { Post } from '@/types/post';
 import ArchivedPostCard from '@/components/blog/ArchivedPostCard';
-import { GET_POST_AND_ARCHIVED_POSTS } from '@/graphql/queries';
+import { GET_POST, GET_ARCHIVED_POSTS } from '@/graphql/queries';
 
 const Loading = () => <p>Loading...</p>;
 const ErrorMessage = ({ message }: { message: string }) => <p className="text-red-500">Error: {message}</p>;
@@ -18,7 +18,7 @@ const RelatedPosts: React.FC<{ posts: Post[] }> = ({ posts }) => (
     {posts.length > 0 ? (
       <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
         {posts.map((post) => (
-          <ArchivedPostCard key={post.id || post.slug} post={post} />
+          <ArchivedPostCard key={post.postId} post={post} />
         ))}
       </div>
     ) : (
@@ -30,25 +30,21 @@ const RelatedPosts: React.FC<{ posts: Post[] }> = ({ posts }) => (
 const SinglePost: React.FC = () => {
   const { id } = useParams<{ id: string }>();
 
-  const { loading, error, data } = useQuery(GET_POST_AND_ARCHIVED_POSTS, {
+  const { loading, error, data } = useQuery(GET_POST, {
     variables: {
       id,
       idType: 'DATABASE_ID',
-      categoryId: 0,
     },
     skip: !id,
   });
 
-  // Determina il `categoryId` da usare nella seconda query
   const categoryId = data?.post?.categories.nodes[0]?.categoryId || 0;
-  // Seconda query per ottenere i post correlati
-  const { data: relatedPostsData } = useQuery(GET_POST_AND_ARCHIVED_POSTS, {
+
+  const { data: relatedPostsData } = useQuery(GET_ARCHIVED_POSTS, {
     variables: {
-      id,
-      idType: 'DATABASE_ID',
       categoryId,
     },
-    skip: !categoryId, // Esegui la query solo se `categoryId` è valido
+    skip: !categoryId,
   });
 
   if (loading) return <Loading />;
@@ -56,7 +52,7 @@ const SinglePost: React.FC = () => {
   if (!data) return null;
 
   const post = data.post;
-  const archivedPosts: Post[] = data.relatedPosts?.nodes || [];
+  const archivedPosts: Post[] = relatedPostsData?.posts?.nodes || [];
 
   return (
     <div className="min-h-screen bg-background">
