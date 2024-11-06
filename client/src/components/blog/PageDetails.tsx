@@ -9,8 +9,8 @@ export default function PageDetails({ page }: PageDetailsProps) {
 
     return (
         <>
-            <h2 className="text-2xl md:text-4xl my-4"> {title} </h2>
-            <div className="prose max-w-none mt-4 mb-4" dangerouslySetInnerHTML={
+            <h2 className="text-2xl text-center md:text-4xl my-4"> {title} </h2>
+            <div className="prose max-w-none mt-4 mb-4 text-justify" dangerouslySetInnerHTML={
                 { __html: content }
             } />
 
