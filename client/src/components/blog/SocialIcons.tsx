@@ -1,13 +1,15 @@
 import { Heart, MessageCircle, Share2 } from "lucide-react";
 import { FacebookShareButton, TwitterShareButton, WhatsappShareButton } from 'react-share';
 
-export default function renderSocialIcons() {
+interface SocialIconsProps {
+    pageTitle: string;
+    url: string;
+}
+
+export default function SocialIcons({ pageTitle, url }: SocialIconsProps) {
     // Get the URL and title of the current page dynamically
-    const shareUrl = typeof window !== "undefined" ? window.location.href : "";
-    const title =
-        typeof document !== "undefined"
-            ? document.title
-            : "Check out this awesome content!";
+    const shareUrl = url;
+    const title = pageTitle;
 
     return (
         <div className="share-buttons">
