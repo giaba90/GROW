@@ -21,10 +21,10 @@ export default function CommentButton({ postId }: { postId: string }): React.Rea
         if (textarea && authorInput) {
             createComment({ variables: { postId: parseInt(postId), content: textarea.value, author: authorInput.value } })
                 .then(response => {
-                    console.log('Comment created:', response.data);
+                    console.log('Commento creato:', response.data);
                 })
                 .catch(err => {
-                    console.error('Error creating comment:', err);
+                    console.error('Errore nella creazione del commento:', err);
                 });
 
         }
@@ -46,11 +46,11 @@ function generateCommentForm(toggleSidebar: () => void, handleSubmit: (event: Re
         <a onClick={toggleSidebar} className="absolute top-2 right-2 text-gray-600 hover:text-gray-800">
             &times;
         </a>
-        <h3 className="text-lg font-semibold p-4">Leave a comment</h3>
-        <Input type="text" name="authorName" placeholder="Your name" />
-        <Textarea placeholder="Type your message here." className="mt-4" />
+        <h3 className="text-lg font-semibold p-4">Lascia un commento</h3>
+        <Input type="text" name="authorName" placeholder="Il tuo nome" />
+        <Textarea placeholder="Scrivi il tuo messaggio qui." className="mt-4" />
         <Button onClick={handleSubmit} variant="outline" className="mt-4">
-            Comment
+            Commenta
         </Button>
     </div>;
 }
