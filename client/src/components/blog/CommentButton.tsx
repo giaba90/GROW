@@ -19,7 +19,7 @@ export default function CommentButton({ postId }: { postId: string }): React.Rea
         const textarea = document.querySelector('textarea') as HTMLTextAreaElement;
         const authorInput = document.querySelector('input[name="authorName"]') as HTMLInputElement;
         if (textarea && authorInput) {
-            createComment({ variables: { postId: parseInt(postId), content: textarea.value, authorName: authorInput.value } })
+            createComment({ variables: { postId: parseInt(postId), content: textarea.value, author: authorInput.value } })
                 .then(response => {
                     console.log('Comment created:', response.data);
                 })
