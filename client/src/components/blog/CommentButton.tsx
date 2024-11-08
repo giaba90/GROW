@@ -1,11 +1,14 @@
 import { MessageCircle } from "lucide-react";
 import { Button } from "@/components/ui/button"
+import { Input } from "@/components/ui/input"
 import { Textarea } from "@/components/ui/textarea"
-
 import React from "react";
+import { gql, useMutation } from '@apollo/client';
+import { CREATE_COMMENT } from "@/graphql/mutations";
 
-export default function CommentButton() {
+export default function CommentButton({ postId }: { postId: string }): React.ReactElement {
     const [isSidebarOpen, setIsSidebarOpen] = React.useState(false);
+    const [createComment, { loading, error, data }] = useMutation(CREATE_COMMENT);
 
     function toggleSidebar() {
         setIsSidebarOpen(!isSidebarOpen);
@@ -13,9 +16,17 @@ export default function CommentButton() {
 
     function handleSubmit(event: React.MouseEvent<HTMLButtonElement, MouseEvent>): void {
         event.preventDefault();
-        const textarea = document.querySelector('textarea');
-        if (textarea) {
-            console.log('Submitted content:', textarea.value);
+        const textarea = document.querySelector('textarea') as HTMLTextAreaElement;
+        const authorInput = document.querySelector('input[name="authorName"]') as HTMLInputElement;
+        if (textarea && authorInput) {
+            createComment({ variables: { postId: parseInt(postId), content: textarea.value, authorName: authorInput.value } })
+                .then(response => {
+                    console.log('Comment created:', response.data);
+                })
+                .catch(err => {
+                    console.error('Error creating comment:', err);
+                });
+
         }
         setIsSidebarOpen(false);
     }
@@ -36,7 +47,8 @@ function generateCommentForm(toggleSidebar: () => void, handleSubmit: (event: Re
             &times;
         </a>
         <h3 className="text-lg font-semibold p-4">Leave a comment</h3>
-        <Textarea placeholder="Type your message here." />
+        <Input type="text" name="authorName" placeholder="Your name" />
+        <Textarea placeholder="Type your message here." className="mt-4" />
         <Button onClick={handleSubmit} variant="outline" className="mt-4">
             Comment
         </Button>

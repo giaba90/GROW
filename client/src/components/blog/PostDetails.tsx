@@ -19,7 +19,7 @@ export default function PostDetails({ post }: PostDetailsProps) {
             <div className="flex flex-wrap gap-2 justify-between">
                 <PostMeta categories={categories} date={date} author={author} />
                 <div className="flex flex-row items-baseline">
-                    <CommentButton />
+                    <CommentButton postId={postId} />
                     <LikeButton initialLikes={0} />
                 </div>
             </div>
