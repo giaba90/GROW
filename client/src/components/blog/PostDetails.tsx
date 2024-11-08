@@ -1,45 +1,11 @@
 import { Post } from '@/types/post';
-import { Badge } from '@/components/ui/badge';
-import { formatDate } from '@/lib/utils';
+import { PostMeta } from './PostMeta';
+import { PostTags } from './PostTags';
 import SocialIcons from './SocialIcons';
 
 type PostDetailsProps = {
     post: Post;
 };
-
-type PostMetaProps = {
-    categories: { nodes: { name: string }[] };
-    date: string;
-    author: { node: { name: string } };
-};
-
-type TagsProps = {
-    tags: { nodes: { name: string }[] };
-};
-
-const PostMeta = ({ categories, date, author }: PostMetaProps) => (
-    <div className="flex items-center space-x-4 text-muted-foreground mb-4">
-        <span className='text-sm md:text-base'>
-            Posted on {
-                categories.nodes.map((cat) => (
-                    <strong key={cat.name}>{cat.name}</strong>
-                ))
-            }, {formatDate(date)} by <b>{author.node.name}</b>
-        </span>
-    </div>
-);
-
-
-const PostTags = ({ tags }: TagsProps) => (
-    <div className="mt-4 mb-4">
-        Tags:&nbsp;
-        {
-            tags.nodes.map((tag) => (
-                <Badge key={tag.name} variant="outline">#{tag.name}</Badge>
-            ))
-        }
-    </div>
-);
 
 export default function PostDetails({ post }: PostDetailsProps) {
     const { postId, title, categories, date, author, featuredImage, content, tags } = post;

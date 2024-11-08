@@ -17,7 +17,7 @@ Per ogni articolo puoi condividerlo sui social, commentarlo sul sito stesso e/o 
 Puoi inoltre fare una ricerca sul sito o seguire gli account social tramite apposite icone poste nella sidebar.
 C'è inoltre la possibilità di collegare pagine statiche al menù principale.
 
-# ISTRUZIONI DI INSTALLAZIOE:
+# ISTRUZIONI DI INSTALLAZIONE:
 
 Work in progress
 
@@ -30,7 +30,7 @@ In locale ho montato un container docker con una immagine di wordpress e php 8.2
 L'installazione di WP prevede una tema base preso dal repo ufficiale di wordpres e tre plugins: dummy data , graphql server e disable gutenberg(opzionale).
 Tutto il progetto è caricato su Github.
 
-# DETTAGLI IMPLEMANTITIVI
+# DETTAGLI IMPLEMANTATIVI
 
 In produzione il frontend è caricato su netlify con un pipeline di ci/co collegato al mio account github.
 Il backend è su una instanza ec2 micro.t3 di Amazon AWS con indirizzo ip statico. 
