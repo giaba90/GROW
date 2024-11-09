@@ -38,7 +38,6 @@ const SinglePost: React.FC = () => {
 
   const post = data.post;
   const archivedPosts: Post[] = relatedPostsData?.posts?.nodes || [];
-
   return (
     <div className="min-h-screen bg-background">
       <Header />
@@ -47,7 +46,7 @@ const SinglePost: React.FC = () => {
           <MoveLeft /> Torna indietro
         </Button>
         <PostDetails post={post} />
-        <RelatedPosts posts={archivedPosts} />
+        <RelatedPosts posts={archivedPosts} postId={post.postId} />
       </main>
       <Footer />
     </div>
