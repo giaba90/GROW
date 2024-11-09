@@ -1,8 +1,7 @@
 import { Post } from '@/types/post';
 import { PostMeta } from './PostMeta';
 import { PostTags } from './PostTags';
-import SocialIcons from './SocialIcons';
-import LikeButton from './LikeButton';
+import ShareSocial from './ShareSocial';
 import CommentButton from './CommentButton';
 
 type PostDetailsProps = {
@@ -14,7 +13,7 @@ export default function PostDetails({ post }: PostDetailsProps) {
 
     return (
         <>
-            <SocialIcons pageTitle={title} url={`${import.meta.env.VITE_BASE_URL}/post/${postId}`} />
+            <ShareSocial pageTitle={title} url={`${import.meta.env.VITE_BASE_URL}/post/${postId}`} />
             <h2 className="text-2xl md:text-4xl my-4">{title}</h2>
             <div className="flex flex-wrap gap-2 justify-between">
                 <PostMeta categories={categories} date={date} author={author} />
