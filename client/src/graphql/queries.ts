@@ -128,3 +128,21 @@ export const GET_MENU = gql`
     }
   }
 `;
+
+export const GET_COMMENT = gql`query GetPostComments($postId: ID!) {
+  post(id: $postId, idType: DATABASE_ID) {
+    comments {
+      nodes {
+        id
+        content
+        date
+        author {
+          node {
+            name
+          }
+        }
+      }
+    }
+  }
+}
+`;

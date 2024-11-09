@@ -3,7 +3,7 @@ import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Textarea } from "@/components/ui/textarea"
 import React from "react";
-import { gql, useMutation } from '@apollo/client';
+import { useMutation } from '@apollo/client';
 import { CREATE_COMMENT } from "@/graphql/mutations";
 
 export default function CommentButton({ postId }: { postId: string }): React.ReactElement {
