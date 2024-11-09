@@ -20,7 +20,7 @@ export default function PostDetails({ post }: PostDetailsProps) {
                 <PostMeta categories={categories} date={date} author={author} />
                 <div className="flex flex-row items-baseline">
                     <CommentButton postId={postId} />
-                    <LikeButton initialLikes={0} />
+
                 </div>
             </div>
             <img

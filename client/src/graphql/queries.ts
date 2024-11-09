@@ -146,3 +146,10 @@ export const GET_COMMENTS = gql`query GetPostComments($postId: ID!) {
   }
 }
 `;
+
+export const GET_POST_COMMENT_COUNT = gql`query GetPostCommentCount($postId: ID!) {
+  post(id: $postId, idType: DATABASE_ID) {
+    commentCount  # Numero totale di commenti del post
+  }
+}
+`;
