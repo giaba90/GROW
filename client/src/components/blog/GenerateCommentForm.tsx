@@ -14,7 +14,7 @@ const GenerateCommentForm: React.FC<{ toggleSidebar: () => void; postId: string 
         const textarea = document.querySelector('textarea') as HTMLTextAreaElement;
         const authorInput = document.querySelector('input[name="authorName"]') as HTMLInputElement;
         if (textarea && authorInput) {
-            createComment({ variables: { postId: parseInt(postId), content: textarea.value, author: authorInput.value } })
+            createComment({ variables: { postId: parseInt(postId), content: textarea.value, authorName: authorInput.value } })
                 .then(response => {
                     console.log('Commento creato:', response.data);
                 })
