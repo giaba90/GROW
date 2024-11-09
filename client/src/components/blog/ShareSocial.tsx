@@ -29,7 +29,7 @@ interface SocialIconsProps {
     url: string;
 }
 
-export default function SocialIcons({ pageTitle, url }: SocialIconsProps) {
+export default function ShareSocial({ pageTitle, url }: SocialIconsProps) {
 
 
     return (

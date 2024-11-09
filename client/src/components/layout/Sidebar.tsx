@@ -95,14 +95,14 @@ export default function Sidebar() {
                 </CardHeader>
                 <CardContent>
                     <div className="flex space-x-4">
-                        <a href="#" className="text-gray-600 hover:text-blue-600">
+                        <a href="https://www.facebook.com/barrancagianluca" className="text-gray-600 hover:text-blue-600">
                             <Facebook />
                         </a>
 
                         <a href="#" className="text-gray-600 hover:text-pink-600">
                             <Instagram className="h-6 w-6" />
                         </a>
-                        <a href="#" className="text-gray-600 hover:text-blue-800">
+                        <a href="https://www.linkedin.com/in/gianluca-barranca/" className="text-gray-600 hover:text-blue-800">
                             <Linkedin className="h-6 w-6" />
                         </a>
                     </div>
