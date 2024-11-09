@@ -129,7 +129,7 @@ export const GET_MENU = gql`
   }
 `;
 
-export const GET_COMMENT = gql`query GetPostComments($postId: ID!) {
+export const GET_COMMENTS = gql`query GetPostComments($postId: ID!) {
   post(id: $postId, idType: DATABASE_ID) {
     comments {
       nodes {
