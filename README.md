@@ -19,16 +19,38 @@ C'è inoltre la possibilità di collegare pagine statiche al menù principale.
 
 # ISTRUZIONI DI INSTALLAZIONE:
 
-Work in progress
+Apri una nuova finestra di windows powershell ( se sei su Windows) o una finestra nuova del terminale (se sei su Linux/MacOSX)
+
+## Scarica il repo 
+
+```console
+git clone https://github.com/giaba90/GROW.git
+cd GROW
+cd client
+```
+
+## crea un file chiamato .env ed all'interno scrivi
+
+```console
+VITE_GRAPHQL_ENDPOINT = "https://51.21.6.145/wordpress/graphql"
+VITE_BASE_URL = "https://localhost:3000"
+```
+
+## installa le dipendenze 
+
+```console
+npm install
+npm run dev
+```
+
+visita l'indirizzo http://localhost:3000
 
 # TECNOLOGIE USATE
 
-Per realizzare il frontend ho usato il framework reactjs con le librerie Shadcn-ui e Tailwindcss.
+Per realizzare il frontend ho usato il framework ReactJs con le librerie Shadcn-ui e Tailwindcss.
 Per le chiamate al database ho usato Apollo client e le GraphQL query.
 Per una maggiore velocità di sviluppo del progetto , ho usato una installazione WordPress headless per il backend.
-In locale ho montato un container docker con una immagine di wordpress e php 8.2 , una configurazione docker-compose mi ha aiutato ad preparare tutto l'ambiente locale di backend. 
-L'installazione di WP prevede una tema base preso dal repo ufficiale di wordpres e tre plugins: dummy data , graphql server e disable gutenberg(opzionale).
-Tutto il progetto è caricato su Github.
+L'installazione di WP prevede una tema base preso dal repo ufficiale di wordpres e tre plugins: dummy data(opzionale) , graphql server e disable gutenberg(opzionale).
 
 # DETTAGLI IMPLEMANTATIVI
 
