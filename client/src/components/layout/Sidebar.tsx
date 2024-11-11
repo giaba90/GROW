@@ -1,29 +1,19 @@
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
-import {
-    Search, Mail, Facebook, Instagram, Linkedin
-} from 'lucide-react';
+import { Search, Mail, Facebook, Instagram, Linkedin } from 'lucide-react';
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Badge } from '../ui/badge';
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { GET_CATEGORIES } from '@/graphql/queries';
 import { useQuery } from '@apollo/client';
-
-// Define the Category type
-type Category = {
-    id: string;
-    slug: string;
-    name: string;
-    count: number;
-};
+import { Category } from '@/types/Category';
 
 export default function Sidebar() {
     const [email, setEmail] = useState('');
 
     const handleSubmit = (e: React.FormEvent) => {
         e.preventDefault();
-        // Handle newsletter subscription
         console.log('Subscribed:', email);
         setEmail('');
     };
@@ -95,19 +85,20 @@ export default function Sidebar() {
                 </CardHeader>
                 <CardContent>
                     <div className="flex space-x-4">
-                        <a href="https://www.facebook.com/barrancagianluca" className="text-gray-600 hover:text-blue-600">
-                            <Facebook />
-                        </a>
-
-                        <a href="#" className="text-gray-600 hover:text-pink-600">
-                            <Instagram className="h-6 w-6" />
-                        </a>
-                        <a href="https://www.linkedin.com/in/gianluca-barranca/" className="text-gray-600 hover:text-blue-800">
-                            <Linkedin className="h-6 w-6" />
-                        </a>
+                        <SocialLink href="https://www.facebook.com/barrancagianluca" icon={Facebook} hoverColor="hover:text-blue-600" />
+                        <SocialLink href="#" icon={Instagram} hoverColor="hover:text-pink-600" />
+                        <SocialLink href="https://www.linkedin.com/in/gianluca-barranca/" icon={Linkedin} hoverColor="hover:text-blue-800" />
                     </div>
                 </CardContent>
             </Card>
         </aside>
+    );
+}
+
+function SocialLink({ href, icon: Icon, hoverColor }: { href: string, icon: React.ComponentType<{ className?: string }>, hoverColor: string }) {
+    return (
+        <a href={href} className={`text-gray-600 ${hoverColor}`}>
+            <Icon className="h-6 w-6" />
+        </a>
     );
 }

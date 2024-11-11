@@ -5,8 +5,11 @@ import { Card, CardContent, CardFooter, CardHeader, CardTitle } from "@/componen
 import { Post } from '@/types/post';
 import { Badge } from '../ui/badge';
 
+interface BlogPostCardProps {
+    post: Post;
+}
 
-export default function BlogPostCard({ post }: { post: Post }) {
+export default function BlogPostCard({ post }: BlogPostCardProps) {
     return (
         <Card>
             <CardHeader>
@@ -22,7 +25,9 @@ export default function BlogPostCard({ post }: { post: Post }) {
                     <p className="text-muted-foreground text-sm">
                         {new Date(post.date).toLocaleDateString('it-IT', { day: 'numeric', month: 'long', year: 'numeric' }).replace(/(\d+) (.+) (\d+)/, "$1 $2, $3")}
                     </p>
-                    <Link to={`/archive/${post.categories.nodes[0]?.slug}`}>    <Badge>{post.categories.nodes[0]?.slug}</Badge> </Link>
+                    <Link to={`/archive/${post.categories.nodes[0]?.slug}`}>
+                        <Badge>{post.categories.nodes[0]?.slug}</Badge>
+                    </Link>
                 </div>
                 <div className="text-card-foreground" dangerouslySetInnerHTML={{ __html: post.excerpt }} />
             </CardContent>

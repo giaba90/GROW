@@ -4,7 +4,6 @@ import { PostMeta } from './PostMeta';
 import { PostTags } from './PostTags';
 import ShareSocial from './ShareSocial';
 import CommentButton from './CommentButton';
-import AddToFavoritesButton from './AddToFavoritesButton';
 
 type PostDetailsProps = {
     post: Post;
@@ -21,7 +20,6 @@ export default function PostDetails({ post }: PostDetailsProps) {
                 <PostMeta categories={categories} date={date} author={author} />
                 <div className="flex flex-row items-baseline">
                     <CommentButton postId={postId} />
-                    {/*<AddToFavoritesButton />*/}
                 </div>
             </div>
             <img

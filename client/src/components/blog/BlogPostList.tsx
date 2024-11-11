@@ -10,7 +10,7 @@ const BlogPostList: React.FC<{ posts: Post[] }> = ({ posts }) => {
                     <BlogPostCard key={post.postId} post={post} />
                 ))
             ) : (
-                <p>No posts available.</p> // Fallback message if there are no posts
+                <p>Nessun post disponibile.</p>
             )}
         </div>
     );
