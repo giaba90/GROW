@@ -7,7 +7,7 @@ import React from 'react';
 import CommentList from "./CommentList";
 
 const GenerateCommentForm: React.FC<{ toggleSidebar: () => void; postId: string }> = ({ toggleSidebar, postId }) => {
-    const [createComment, { loading, error, data }] = useMutation(CREATE_COMMENT);
+    const [createComment] = useMutation(CREATE_COMMENT);
 
     const handleSubmit = (event: React.MouseEvent<HTMLButtonElement, MouseEvent>): void => {
         event.preventDefault();
