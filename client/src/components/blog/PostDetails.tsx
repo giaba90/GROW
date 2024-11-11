@@ -15,7 +15,7 @@ export default function PostDetails({ post }: PostDetailsProps) {
 
     return (
         <>
-            <ShareSocial pageTitle={title} url={`${import.meta.env.VITE_BASE_URL}/post/${postId}`} />
+            <ShareSocial pageTitle={title} url={`${import.meta.env.VITE_BASE_URL}post/${postId}`} />
             <h2 className="text-2xl md:text-4xl my-4">{title}</h2>
             <div className="flex flex-wrap gap-2 justify-between">
                 <PostMeta categories={categories} date={date} author={author} />
