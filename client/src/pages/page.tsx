@@ -20,9 +20,9 @@ const Page: React.FC = () => {
   if (error) return <ErrorMessage message={error.message} />;
 
   return (
-    <div className="min-h-screen bg-background">
+    <div className="flex flex-col min-h-screen bg-background">
       <Header />
-      <main className="container mx-auto p-4">
+      <main className="flex-1	container mx-auto p-4">
         <Button size="sm" variant="outline" onClick={() => window.history.back()} >
           <MoveLeft />  Torna indietro
         </Button>
