@@ -49,7 +49,7 @@ export default function Sidebar() {
                             category.name !== "Senza categoria" && (
                                 <li key={category.id}>
                                     <Link to={`/archive/${category.slug}`} className="text-gray-700 hover:underline">
-                                        {category.name} <Badge>{category.count}</Badge>
+                                        <Badge>{category.count}</Badge>  {category.name}
                                     </Link>
                                 </li>
                             )

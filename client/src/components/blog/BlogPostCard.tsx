@@ -29,7 +29,9 @@ export default function BlogPostCard({ post }: BlogPostCardProps) {
                         <Badge>{post.categories.nodes[0]?.slug}</Badge>
                     </Link>
                 </div>
-                <div className="text-card-foreground" dangerouslySetInnerHTML={{ __html: post.excerpt }} />
+                <div className="text-card-foreground" dangerouslySetInnerHTML={
+                    { __html: truncateExcerpt() }
+                } />
             </CardContent>
             <CardFooter>
                 <Button variant="link" asChild className="p-0">
@@ -40,4 +42,8 @@ export default function BlogPostCard({ post }: BlogPostCardProps) {
             </CardFooter>
         </Card>
     );
+
+    function truncateExcerpt() {
+        return post.excerpt.split(" ").slice(0, 25).join(" ");
+    }
 }
