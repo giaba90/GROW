@@ -1,5 +1,5 @@
 import { Page } from '@/types/page';
-
+import React from 'react';
 type PageDetailsProps = {
     page: Page;
 };
