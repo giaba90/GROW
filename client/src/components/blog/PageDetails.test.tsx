@@ -23,4 +23,5 @@ describe('PageDetails Component', () => {
         expect(contentElement).not.toBeNull();
         expect(contentElement!.innerHTML.trim()).toBe(mockPage.content.trim());
     });
+
 });
