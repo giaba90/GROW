@@ -16,7 +16,7 @@ phases:
   post_build:
     commands:
       - echo Deploying to S3...
-      - aws s3 sync build/ s3://grow-client-bucket --delete
+      - aws s3 sync build/ s3://grow-client-bucket --delete --region eu-north-1
       - echo Invalidating CloudFront cache...
       - aws cloudfront create-invalidation --E39996TDV9JH9E E39996TDV9JH9E --paths "/*"
 
