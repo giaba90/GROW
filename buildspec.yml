@@ -5,6 +5,8 @@ phases:
     runtime-versions:
       nodejs: 18
     commands:
+      - echo changing directory to client
+      - cd client
       - echo Installing dependencies...
       - npm install
   build:
