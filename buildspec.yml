@@ -18,7 +18,7 @@ phases:
       - echo Deploying to S3...
       - aws s3 sync dist/ s3://grow-client-bucket --delete --region eu-north-1
       - echo Invalidating CloudFront cache...
-      - aws cloudfront create-invalidation --E39996TDV9JH9E E39996TDV9JH9E --paths "/*"
+      - aws cloudfront create-invalidation --distribution-id E39996TDV9JH9E --paths "/*"
 
 artifacts:
   files:
