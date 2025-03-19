@@ -10,7 +10,7 @@ phases:
   build:
     commands:
       - echo Building Vite app...
-      - cd client && npm run build  # costruisce l'app dentro client
+    #  - cd client && npm run build   costruisce l'app dentro client
   post_build:
     commands:
       - echo Deploying to S3...
