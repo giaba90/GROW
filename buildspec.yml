@@ -5,22 +5,20 @@ phases:
     runtime-versions:
       nodejs: 18
     commands:
-      - echo changing directory to client
-      - cd client
       - echo Installing dependencies...
-      - npm install
+      - cd client && npm install  # esegue tutto dentro client
   build:
     commands:
-      - echo Building React app...
-      - npm run build
+      - echo Building Vite app...
+      - cd client && npm run build  # costruisce l'app dentro client
   post_build:
     commands:
       - echo Deploying to S3...
-      - aws s3 sync dist/ s3://grow-client-bucket --delete --region eu-north-1
+      - cd client && aws s3 sync dist/ s3://grow-client-bucket --delete --region eu-north-1
       - echo Invalidating CloudFront cache...
       - aws cloudfront create-invalidation --distribution-id E39996TDV9JH9E --paths "/*"
 
 artifacts:
   files:
     - "**/*"
-  base-directory: dist/
+  base-directory: client/dist/  # Assicura che il percorso sia corretto
